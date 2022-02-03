@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Books
+        </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='./css/style.css') }}">
+    </head>
+    <body>
+        <div class="contenedor2">
+            <div class="box">
+                <form action="/book/new" method="POST">
+                    <h1 class="blue-T">
+                        Nuevo Libro
+                    </h1>
+                    <div class="entrada">
+                        <label for="title">
+                            Nombre:
+                        </label>
+                        <input type="text" id="title" name="title" required/>
+                    </div>
+                    <div class="entrada">
+                        <label for="num_of_pages">
+                            Número de páginas:
+                        </label>
+                        <input type="number" id="num_of_pages" name="num_of_pages" required/>
+                    </div>
+                    <button type="submit" class="btn green-B">
+                        Crear
+                    </button>
+                </form>
+                <form action="/authors" method="GET">
+                    <button type="submit" class="link blue-T">
+                        Home
+                    </button>
+                </form>
+            </div>
+            <div class="box">
+                <h1 class="blue-T">
+                    Todos los Libros
+                </h1>
+                <ul>
+                    {% for libro in listaLibros %}
+                        <li>
+                            <form action="/book/{{libro['id']}}" method="GET">
+                                <button type="submit" class="link blue-T">
+                                    {{libro["title"]}}
+                                </button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

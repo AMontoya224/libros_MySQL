@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Mostrar Dojo
+        </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='./css/style.css') }}">
+    </head>
+    <body>
+        <div class="contenedor2">
+            <div class="box">
+                <h1 class="blue-T">
+                    Title: {{listaAutoresFavorito["title"]}}
+                </h1>
+                <h3>
+                    Favorito por:
+                </h3>
+                {% for autor in listaAutoresFavorito %}
+                    <li>
+                        {{autor["name"]}}
+                    </li>
+                {% endfor %}
+                <form action="/authors" method="GET">
+                    <button type="submit" class="link blue-T">
+                        Home
+                    </button>
+                </form>
+            </div>
+            <div class="box">
+                <h1 class="blue-T">
+                    Añadir favorito a:
+                </h1>
+                <div class="column">
+                    <form action="/book/{{var}}/add" method="POST">
+                        <div class="sub">
+                            <label for="autor_id">
+                                Libro:
+                            </label>
+                            <select id="autor_id" name="autor_id" required>
+                                <option value="">-- Selecciona un libro --</option>-->
+                                {% for autor in listaAutores %}
+                                    <option value="{{autor['id']}}">{{autor['name']}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn green-B">
+                            Añadir
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
